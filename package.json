@@ -1,0 +1,14 @@
+{
+  "name": "pokedit",
+  "version": "0.0.1",
+  "dependencies": {
+    "babel-core": "latest",
+    "babel-plugin-external-helpers": "latest",
+    "babel-preset-env": "latest",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "rollup": "latest",
+    "rollup-plugin-babel": "latest",
+    "socket.io": "^2.0.4"
+  }
+}

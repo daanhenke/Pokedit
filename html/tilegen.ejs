@@ -1,0 +1,44 @@
+<html>
+<head>
+    <script>
+
+        const settings = {
+            tileWidth: 16,
+            tileHeight: 16,
+
+            amountOfTiles: 60
+        }
+
+        function drawTile(context, i, color) {
+            context.fillStyle = "#373737";
+            context.fillRect(i * settings.tileWidth, 0, settings.tileWidth, settings.tileHeight)
+            context.fillStyle = color;
+            context.fillRect(i * settings.tileWidth + 1, 1, settings.tileWidth, settings.tileHeight);
+        }
+
+        function generateColor(i) {
+            return 'hsl(' + ((i / settings.amountOfTiles) * 360) + ', 100%, 20.5%)';
+        }
+
+        function main() {
+            let canvas = document.querySelector("#gen");
+            canvas.width = settings.tileWidth * settings.amountOfTiles;
+            canvas.height = settings.tileHeight;
+
+            let context = canvas.getContext("2d");
+
+            for (let i = 0; i < settings.amountOfTiles; i++) {
+                drawTile(context, i, generateColor(i));
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+<canvas id="gen" width="1" height="1"></canvas>
+<br>
+<button onclick="main()">Generate</button>
+
+</body>
+</html>

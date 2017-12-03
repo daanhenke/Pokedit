@@ -1,0 +1,164 @@
+@font-face {
+    font-family: m-light;
+    src: url('../fonts/Montserrat-Light.otf');
+}
+
+@font-face {
+    font-family: m-extralight;
+    src: url('../fonts/Montserrat-ExtraLight.otf');
+}
+
+
+
+body, html {
+    background: #373737;
+    background: -webkit-linear-gradient(left top, #373737, #484848);
+    background: -o-linear-gradient(bottom right, #373737, #484848);
+    background: -moz-linear-gradient(bottom right, #373737, #484848);
+    background: linear-gradient(to bottom right, #373737, #484848);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+::selection {
+    background-color: #131313;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    width: 100%;
+    display: inline-block;
+    margin-top: 3%;
+}
+
+header > span {
+    font-family: "m-light", "serif";
+    color: white;
+    font-size: 27px;
+}
+
+header > h2 {
+    font-family: "m-light", "serif";
+    color: white;
+    font-size: 20px;
+    margin-top: 2%;
+}
+
+header > hr {
+    width: 20%;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ffffff;
+}
+
+/* ########################
+   #        FORM          #
+   ########################
+*/
+
+form {
+    display: inline-block;
+    margin-top: 1%;
+}
+
+input {
+    transition: 0.3s;
+}
+
+#index-form > input {
+    width: 330px;
+    text-align: center;
+    font-family: "m-light", "serif";
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    font-size: 19px;
+    padding: 15px 0 15px 0;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    -webkit-box-shadow: 0 0 30px 0 rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    0 0 30px 0 rgba(50, 50, 50, 0.5);
+    box-shadow:         0 0 30px 0 rgba(50, 50, 50, 0.5);
+}
+
+#index-form > input[type=button] {
+    margin-top: 5%;
+    color: white;
+    background: #07ff02;
+    background: -webkit-linear-gradient(left, #07ff02 , #efff00);
+    background: -o-linear-gradient(right, #07ff02, #efff00);
+    background: -moz-linear-gradient(right, #07ff02, #efff00);
+    background: linear-gradient(to right, #07ff02 , #efff00);
+    width: 250px;
+    cursor: pointer;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #c5c5c5;
+}
+::-moz-placeholder {
+    color: #c5c5c5;
+}
+:-ms-input-placeholder {
+    color: #c5c5c5;
+}
+:-moz-placeholder {
+    color: #c5c5c5;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.hidden {
+    display: none;
+}
+#places{
+    display: inline;
+    width: 100%;
+
+}
+#reclame {
+    margin-top: 20%;
+    float: left; width: 22%;
+    display: inline;
+    border: greenyellow 5px solid;
+    border-radius: 10px;
+}
+
+
+#inlog {
+    float: left; width: 49%;
+    display: inline;
+}
+
+
+#uitleg{
+    margin-top: 20%;
+    float: left; width: 25%;
+    display: inline;
+    border: greenyellow 5px solid;
+    border-radius: 10px;
+    color: white;
+}
+
+footer{
+    display: block;
+    margin-top: 10px;
+    color: white;
+}
