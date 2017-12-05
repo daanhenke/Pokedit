@@ -4,10 +4,15 @@ export const G1Offsets = {
     PlayerName: 0x2598,
     RivalName: 0x25F6,
 
+    pokemonOwned: 0x25A3,
+    pokemonSeen: 0x25B6,
+
     pocketItemList: 0x25C9,
 
     checkSumStart: 0x2598,
     checkSumEnd: 0x3522,
+
+    timePlayed: 0x2CED,
 
     checkSumLocation: 0x3523
 };
@@ -69,6 +74,17 @@ export class G1Save {
         return itemList;
     }
 
+    writeItemList(address, itemList) {
+        this.writeByte(address, itemList.amount);
+        address++;
+
+        for (let i = 0; i < itemList.amount; i++) {
+            let item = itemList.getItem(i);
+            this.writeByte(address + (i * 2), item.type);
+            this.writeByte(address + 1 + (i * 2), item.amount);
+        }
+    }
+
     calculateChecksum() {
         let checksum = new Uint8Array([0xFF]);
         for (let i = G1Offsets.checkSumEnd; i >= G1Offsets.checkSumStart; i--) {
@@ -77,6 +93,53 @@ export class G1Save {
 
         return checksum[0];
     }
+
+    readHasSeen(pokemon) {
+        return (this.readByte(G1Offsets.pokemonSeen +  (pokemon >> 3)) >> (pokemon & 7) & 1);
+    }
+
+    writeHasSeen(pokemon, seen) {
+        let byte = this.readByte(G1Offsets.pokemonSeen + (pokemon >> 3));
+        byte |= seen << (pokemon & 7);
+        this.writeByte(G1Offsets.pokemonSeen + (pokemon >> 3), byte);
+    }
+
+    readHasCaught(pokemon) {
+        return (this.readByte(G1Offsets.pokemonOwned +  (pokemon >> 3)) >> (pokemon & 7) & 1);
+    }
+
+    writeHasCaught(pokemon, caught) {
+        let byte = this.readByte(G1Offsets.pokemonOwned + (pokemon >> 3));
+        byte |= caught << (pokemon & 7);
+        this.writeByte(G1Offsets.pokemonOwned + (pokemon >> 3), byte);
+    }
+
+    readTimePlayed() {
+        let hours = this.readByte(G1Offsets.timePlayed) + (this.readByte(G1Offsets.timePlayed + 1) * 0xFF);
+        let minutes = this.readByte(G1Offsets.timePlayed + 2);
+        let seconds = this.readByte(G1Offsets.timePlayed + 3);
+
+        return {
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds
+        };
+    }
+
+    writeTimePlayed(hours, minutes, seconds) {
+        let hoursSmall = hours % 255;
+        let hoursBig = Math.floor(hours / 255);
+
+        this.writeByte(G1Offsets.timePlayed, hoursSmall);
+        this.writeByte(G1Offsets.timePlayed + 1, hoursBig);
+        this.writeByte(G1Offsets.timePlayed + 2, minutes);
+        this.writeByte(G1Offsets.timePlayed + 3, seconds);
+    }
+
+    readMoney() {
+
+    }
+
 
     fixChecksum() {
         this.writeByte(G1Offsets.checkSumLocation, this.calculateChecksum());
